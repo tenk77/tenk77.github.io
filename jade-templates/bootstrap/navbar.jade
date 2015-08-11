@@ -1,10 +1,3 @@
-style.
-    .navbar-brand > div {
-        background-image: url('http://tenk77.github.io/logos/Name-Logo.png');
-        height: 25px;
-        width: 296px;
-        margin-right: -0.275in;
-    }
 nav(role="navigation").navbar.navbar-default.navbar-fixed-top
     .navbar-header
         button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle.collapsed
@@ -13,7 +6,8 @@ nav(role="navigation").navbar.navbar-default.navbar-fixed-top
             span.icon-bar
             span.icon-bar
         span.navbar-brand
-            div
+            - var style = {"background-image": "url('http://tenk77.github.io/logos/Name-Logo.png')", "height": "25px", "width": "296px", "margin-right": -"0.275in"}
+            div(style=style)
     a(class="navbar-brand", href="#")
         span.logo
     .collapse.navbar-collapse
