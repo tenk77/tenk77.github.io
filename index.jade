@@ -27,11 +27,12 @@ block body
             include widgets/contacts.jade
             include widgets/links.jade
             script(type="application/javascript").
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".widgets").stickySidebar({
-                        timer: 1, padding: 30
+                        timer: 1,
+                        padding: 30
                     });
-                }, 1*1000);
+                }, 1 * 1000);
     .row
         .col-md-12
             - for(var i = 0; i < 100; i++)
