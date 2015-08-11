@@ -1,22 +1,22 @@
-script(type='application/javascript').
-  setTimeout(function () {$('#contact-1,#contact-2').fadeOut();},1*1000)
-  var contact1=function() {
-  var el = $('#contact-1');
-  if(el.css('display') !== 'none') {
-  el.fadeOut();
-  } else {
-  el.fadeIn();
-  }
-  };
-  var contact2=function() {
-  var el = $('#contact-2');
-  if(el.css('display') !== 'none') {
-  el.fadeOut();
-  } else {
-  el.fadeIn();
-  }
-  };
-div
+div.contacts
+  script(type='application/javascript').
+    setTimeout(function () {$('#contact-1,#contact-2').fadeOut();},1*1000)
+    var contact1=function() {
+    var el = $('#contact-1');
+    if(el.css('display') !== 'none') {
+    el.fadeOut();
+    } else {
+    el.fadeIn();
+    }
+    };
+    var contact2=function() {
+    var el = $('#contact-2');
+    if(el.css('display') !== 'none') {
+    el.fadeOut();
+    } else {
+    el.fadeIn();
+    }
+    };
   h4
     a(onclick='contact1();', href='#') Tenk
   #contact-1
