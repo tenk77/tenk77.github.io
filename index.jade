@@ -22,15 +22,17 @@ block body
             .container
                 h1 Test
         .col-md-2.widgets
+            link(rel="stylesheet", type="text/css", href="http://tenk77.github.io/css/widgets-col.css")
             script(type="application/javascript", src="http://tenk77.github.io/js/sticky.min.js")
+            include widgets/contacts.jade
+            br
+            include widgets/links.jade
             script(type="application/javascript").
                 setTimeout(function () {
                     $(".widgets").stickySidebar({
                         timer: 1, padding: 30
                     });
                 }, 1*1000);
-            include widgets/contacts.jade
-            include widgets/links.jade
     .row
         .col-md-12
             - for(var i = 0; i < 100; i++)

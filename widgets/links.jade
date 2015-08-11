@@ -1,0 +1,15 @@
+script(type="application/javascript").
+  var links_toggle = function() {
+    var el;
+    el = $(".links");
+    if (el.css("display") !== "none") {
+      return el.fadeOut();
+    } else {
+      return el.fadeIn();
+    }
+  };
+h3: a(onclick="links_toggle();") Links
+div.links
+  - var links = [["http://furyn.github.io/", "Wiki"], ["http://dirtybomb.nexon.net/", "Dirty Bomb News"]];
+  - for(var i = 0; i < links.length; i++)
+    h4: a(href="#{links[i][0]}") #{links[i][1]}

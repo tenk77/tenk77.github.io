@@ -1,7 +1,7 @@
 script(type="application/javascript").
   setTimeout((function() {
     return $("#contact-1,#contact-2").fadeOut();
-  }), 0.1 * 1000);
+  }), 0.05 * 1000);
 
   var contact_toggle = function(num) {
     var el;
@@ -31,7 +31,6 @@ div.contacts
       a(href="http://steamcommunity.com/profiles/76561198059890894/") Steam
       span(style={color:grey})  | 
       a(href="mailto:tenkmontro77@gmail.com") Email
-
   h4: a(onclick="contact_toggle(2);", href="#") Zombie
   #contact-2
     h5 Contact Me!
