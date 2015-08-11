@@ -1,0 +1,23 @@
+extend jade-templates/main.jade
+block head
+    - var title         =   "Home Page";
+    - var description   =   "Home Page";
+    - var keywords      =   "";
+    - var author        =   "Nicholas J. Phillips";
+    ///Metadata
+    meta(charset="UTF-8")
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+    meta(name="author", content=author)
+    //\Metadata
+    
+    block other
+
+    ///Title
+    title=title
+    //\Title
+block body
+    .container
+        h3(style={'display':'inline-flex'})
+            span Monstro Gaming
+        include widgets/contacts.jade

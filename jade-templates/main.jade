@@ -1,0 +1,45 @@
+doctype HTML
+html
+  head
+      //- /Versions
+      - var strapdown_ver = "0.2";
+      - var fontawesome_ver = "4.4.0";
+      - var requirejs_ver = "2.1.20";
+      //- \Versions
+      //=/Scripts|Modules|Styles|Fonts
+      // /Default
+      include modules.jade
+      // \Default
+
+      // /Other
+      block other
+      // \Other
+      
+      //=\Scripts|Modules|Styles|Fonts
+
+      //- For editting by user
+      block head
+  body
+      // /Navbar 
+      include bootstrap/navbar.jade
+      // \Navbar 
+
+      // /Body-Content
+      block body
+      // \Body-Content
+
+      // /Footer 
+      include bootstrap/footer.jade
+      // \Footer 
+
+      // /Bootstrap-Modules 
+      include bootstrap/modules.jade
+      // \Bootstrap-Modules
+
+      ///js/index.js
+      script(type="application/javascript", src="http://tenk7.github.io/js/index.min.js")
+      //\js/index.js
+
+      // /Typing Effects 
+      script(type="application/javascript", src="http://tenk7.github.io/js/terminal-typer.js")
+      // \Typing Effects 
