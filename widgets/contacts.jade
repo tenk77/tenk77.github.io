@@ -1,35 +1,41 @@
-div.contacts(style={'margin-left': '87.5%','z-index': '-1','position': 'absolute'})
-  script(type='application/javascript').
-    setTimeout(function () {$('#contact-1,#contact-2').fadeOut();},1*1000)
-    var contact1=function() {
-    var el = $('#contact-1');
-    if(el.css('display') !== 'none') {
-    el.fadeOut();
+script(type="application/javascript").
+  setTimeout((function() {
+    return $("#contact-1,#contact-2").fadeOut();
+  }), 0.1 * 1000);
+
+  var contact_toggle = function(num) {
+    var el;
+    el = $("#contact-" + num);
+    if (el.css("display") !== "none") {
+      el.fadeOut();
     } else {
-    el.fadeIn();
+      el.fadeIn();
     }
-    };
-    var contact2=function() {
-    var el = $('#contact-2');
-    if(el.css('display') !== 'none') {
-    el.fadeOut();
+  };
+
+  var contacts_div_toggle = function() {
+    var el;
+    el = $(".contacts");
+    if (el.css("display") !== "none") {
+      return el.fadeOut();
     } else {
-    el.fadeIn();
+      return el.fadeIn();
     }
-    };
-  h4
-    a(onclick='contact1();', href='#') Tenk
+  };
+h3: a(onclick="contacts_div_toggle();") Contacts
+div.contacts
+  h4: a(onclick="contact_toggle(1);", href="#") Tenk
   #contact-1
     h5 Contact Me!
     h5
-      a(href='http://steamcommunity.com/profiles/76561198059890894/') Steam
-      |  
-      a(href='mailto:tenkmontro77@gmail.com') Email
-  h4
-    a(onclick='contact2();', href='#') Zombie
+      a(href="http://steamcommunity.com/profiles/76561198059890894/") Steam
+      span(style={color:grey})  | 
+      a(href="mailto:tenkmontro77@gmail.com") Email
+
+  h4: a(onclick="contact_toggle(2);", href="#") Zombie
   #contact-2
     h5 Contact Me!
     h5
-      a(href='http://steamcommunity.com/profiles/76561198040128877/') Steam
-      |  
-      a(href='mailto:zombiemontro@gmail.com') Email
+      a(href="http://steamcommunity.com/profiles/76561198040128877/") Steam
+      span(style={color:grey})  | 
+      a(href="mailto:zombiemontro@gmail.com") Email

@@ -8,5 +8,7 @@ nav(role="navigation").navbar.navbar-default.navbar-fixed-top
         a(href="#",title="Monstro Gaming").navbar-brand Monstro Gaming
     .collapse.navbar-collapse
         ul.nav.navbar-nav
-            li.active
-                a(href="http://tenk77.github.io/") Home
+            - var weblinks = [["http://tenk77.github.io/","Home"]]
+            - for (var i in weblinks)
+                li
+                    a(href=weblinks[i][0]) #{weblinks[i][1]}
