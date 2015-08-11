@@ -12,4 +12,4 @@ h3: a(onclick="links_toggle();") Links
 div.links
   - var links = [["http://furyn.github.io/", "Wiki"], ["http://dirtybomb.nexon.net/", "Dirty Bomb News"]];
   - for(var i = 0; i < links.length; i++)
-    h4: a(href="#{links[i][0]}") #{links[i][1]}
+    h4: a(target="blank", href="#{links[i][0]}") #{links[i][1]}
