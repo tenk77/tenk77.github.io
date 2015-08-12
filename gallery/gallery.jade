@@ -1,0 +1,291 @@
+// Gallery Modules
+script(type='application/javascript').
+    (function(e) {
+        e.fn.extend({
+            smoothGallery: function(t) {
+                var n = {
+                    animSpeed: 180,
+                    delaySpeed: 50,
+                    visibleRows: 2,
+                    animEasing: "easeOutQuart"
+                };
+                var t = e.extend(n, t);
+                return this.each(function() {
+                    jQuery.fn.reverse = [].reverse;
+                    setHeight = function() {
+                        var n = e(".sg-item").outerHeight(),
+                            r = n * t.visibleRows,
+                            i = parseInt(e(".sg-item").css("top")),
+                            s = Math.round(Math.abs(i) / n) * n;
+                        e(".sg-item").css("top", "-" + s + "px");
+                        e(".sg").css("height", r)
+                    };
+                    modalHeight = function() {
+                        if (e(".sg-modal").length) {
+                            var t = parseInt(e(".sg-modal img").height()),
+                                n = parseInt(e(window).height());
+                            if (n < t + 50) {
+                                e(".sg-modal img").css("height", n - 20);
+                                e("#bug").html("smaller")
+                            } else {
+                                e(".sg-modal img").css("height", "auto");
+                                e("#bug").html(t + "" + n)
+                            }
+                        }
+                    };
+                    e(".sg-up").addClass("sg-disabled");
+                    e(".sg").show();
+                    setHeight();
+                    e(window).resize(function() {
+                        setHeight();
+                        modalHeight()
+                    });
+                    slideDown = function() {
+                        if (e(".sg-item").is(":animated")) {
+                            return false
+                        } else {
+                            var n = parseInt(e(".sg-item").last().css("top")),
+                                r = parseInt(e(".sg-item").last().outerHeight()),
+                                i = parseInt(e(".sg-item").last().outerWidth()),
+                                s = e(".sg-item").length,
+                                o = parseInt(e(".sg").width()),
+                                u = parseInt(e(".sg").height()),
+                                a = Math.floor(o / i),
+                                f = Math.ceil(s / a),
+                                l = f * r,
+                                c = u / r * r;
+                            if (n <= -(l - c)) {} else {
+                                e(".sg-up").removeClass("sg-disabled");
+                                e(".sg-item").each(function(n) {
+                                    itemHeight2 = parseInt(e(".sg-item").outerHeight());
+                                    e(this).delay(t.delaySpeed * n).animate({
+                                        top: "-=" + itemHeight2 + "px"
+                                    }, t.animSpeed, t.animEasing)
+                                });
+                                if (n <= -(l - c) + r) {
+                                    e(".sg-down").addClass("sg-disabled")
+                                }
+                            }
+                            event.preventDefault()
+                        }
+                    };
+                    e(document.body).on("click", ".sg-down", function(e) {
+                        slideDown()
+                    });
+                    e(document).keydown(function(e) {
+                        if (e.keyCode == 40) {
+                            slideDown();
+                            return false
+                        }
+                    });
+                    slideUp = function() {
+                        if (e(".sg-item").is(":animated")) {
+                            return false
+                        } else {
+                            if (e(".sg-item").first().css("top") == "0px") {} else {
+                                e(".sg-down").removeClass("sg-disabled");
+                                e(".sg-item").reverse().each(function(n) {
+                                    itemHeight2 = parseInt(e(".sg-item").outerHeight());
+                                    e(this).delay(t.delaySpeed * n).animate({
+                                        top: "+=" + itemHeight2 + "px"
+                                    }, t.animSpeed, t.animEasing)
+                                });
+                                var n = parseInt(e(".sg-item").last().outerHeight());
+                                if (parseInt(e(".sg-item").first().css("top")) == 0 - n) {
+                                    e(".sg-up").addClass("sg-disabled")
+                                }
+                            }
+                            event.preventDefault()
+                        }
+                    };
+                    e(document.body).on("click", ".sg-up", function(e) {
+                        slideUp()
+                    });
+                    e(document).keydown(function(e) {
+                        if (e.keyCode == 38) {
+                            slideUp();
+                            return false
+                        }
+                    });
+                    e(document.body).on("click", ".sg-item a", function(t) {
+                        var n = e(this).attr("title"),
+                            r = e(this).attr("href");
+                        if (e(this).attr("title")) {
+                            e("body").append('<div class="sg-modal"><div class="sg-modal-h"><div class="sg-modal-v"><div class="sg-modal-img-wrap"><img src="' + r + '"/><a href="#" id="sg-close">&times;</a></div><br><div class="sg-caption">' + n + "</div></div></div></div>")
+                        } else {
+                            e("body").append('<div class="sg-modal"><div class="sg-modal-h"><div class="sg-modal-v"><div class="sg-modal-img-wrap"><img src="' + r + '"/><a href="#" id="sg-close">&times;</a></div></div></div></div>')
+                        }
+                        e(".sg-modal").fadeIn(300, function() {
+                            modalHeight()
+                        });
+                        t.preventDefault()
+                    });
+                    e(document.body).on("click", "#sg-close", function(t) {
+                        e(".sg-modal").fadeOut(300, function() {
+                            e(this).remove()
+                        });
+                        t.preventDefault()
+                    })
+                })
+            }
+        })
+    })(jQuery);
+style(type='text/css').
+    .sg {
+        font-size: 0;
+        line-height: 0;
+        overflow: hidden;
+        position: relative;
+        background: #eee;
+        border-radius: 6px;
+        /* Prevent flash of unstyled content */
+        display: none;
+    }
+    .sg-paginate {
+        text-align: center;
+    }
+    .sg-paginate a:link, .sg-paginate a:visited {
+        text-decoration: none;
+        display: inline-block;
+        color: #666;
+        border: 2px solid #666;
+        width: 40px;
+        height: 19px;
+        padding: 7px 0 0 0;
+        margin: 3px;
+        border-radius: 7px;
+        font-size: 10px;
+        vertical-align: top;
+    }
+    .sg-paginate a:hover {
+        color: #fff;
+        background: #666;
+    }
+    .sg-paginate a:active {
+        color: #fff;
+        border: 2px solid #222;
+        background: #222;
+    }
+    .sg-disabled {
+        opacity: .3;
+    }
+    .sg-item {
+        display: inline-block;
+        position: relative;
+        font-size: 12px;
+        color: #8B8B8B;
+        line-height: 1.4em;
+        padding: 15px;
+        text-align: center;
+        width: 25%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        top: 0;
+    }
+    .sg-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 3px;
+        box-shadow: 0 5px 15px #ccc;
+        -webkit-transition: all .2s ease-out;
+        -moz-transition: all .2s ease-out;
+        -ms-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+    }
+    .sg-item img:hover {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    .sg-modal {
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, .8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 15px 15px 60px 15px;
+        display: none;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .sg-modal-h {
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+    .sg-modal-v {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .sg-modal img {
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 0 10px #000;
+    }
+    .sg-modal-img-wrap {
+        position: relative;
+        display: inline-block;
+    }
+    .sg-caption {
+        color: #E2E2E2;
+        background: #000;
+        bottom: 0;
+        line-height: 1.2em;
+        padding: 5px 15px;
+        display: inline-block;
+        border-radius: 20px;
+        font-size: 12px;
+    }
+    #sg-close {
+        color: #fff;
+        text-decoration: none;
+        border: 2px solid #fff;
+        width: 31px;
+        height: 24px;
+        display: inline-block;
+        padding-top: 0.3%;
+        border-radius: 17px;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+    #sg-close:hover {
+        color: rgb(200, 0, 0);
+        border: 2px solid rgb(200, 0, 0);
+    }
+    @media all and (max-width: 800px) {
+        .sg-item {
+            width: 33.3%;
+       }
+    }
+    @media all and (max-width: 500px) {
+        .sg-item {
+            width: 50%;
+            padding: 5px;
+       }
+    }
+// Gallery Initiator
+//- script(type='application/javascript').
+    $(document).ready(function() {
+      $(document).smoothGallery({
+          animSpeed: 300,
+          delaySpeed: 50,
+          visibleRows: 1,
+          animEasing: 'easeOutQuart'
+      });
+    });
+.sg
+    .sg-item
+        a(href='../logos/logo.png', title='Our Logo')
+            img(src='../logos/logo.png')
+        br
+        | Logo
+.sg-paginate
+    a.sg-up(href='#', style={"font-size": "150%;","padding":"0% 0 2.2%;"}) ▲
+    a.sg-down(href='#', style={"font-size": "150%;","padding":"0% 0 2.2%;"}) ▼

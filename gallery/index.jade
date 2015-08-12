@@ -1,0 +1,40 @@
+extend ../jade-templates/main.jade
+block head
+    - var title         =   "Home Page";
+    - var description   =   "Home Page";
+    - var keywords      =   "";
+    - var author        =   "Nicholas J. Phillips";
+    ///Metadata
+    meta(charset="UTF-8")
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+    meta(name="author", content=author)
+    //\Metadata
+    
+    block other
+
+    ///Title
+    title=title
+    //\Title
+block body
+    //- .row
+        .col-md-2.widgets
+            link(rel="stylesheet", type="text/css", href="http://tenk77.github.io/css/widgets-col.min.css")
+            include ../widgets/contacts.jade
+            script(type="application/javascript").
+                setTimeout(function() {$(".widgets").stickySidebar({timer: 1,padding: 30});}, 1 * 1000);
+    ///Gallery
+    //- iframe(src="gallery.html",width="100%",frameborder=0,seamless=1,style={"height":"30em"})
+    .row
+        .col-md-12
+            include gallery.jade
+    //\Gallery
+    script(type="application/javascript").
+        $(document).ready(function() {
+            $(document).smoothGallery({
+                animSpeed: 300,
+                delaySpeed: 50,
+                visibleRows: 1,
+                animEasing: 'easeOutQuart'
+            });
+        });

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML><html><head><!--=/Scripts|Modules|Styles|Fonts--><!-- /Default--><!--/Modules--><!-- Jquery | http://jquery.com --><script type="application/javascript" src="http://tenk77.github.io/node_modules/jquery/dist/jquery.min.js"></script><!-- Require.JS | http://RequireJS.org--><script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script><!-- jQuery Column Formatter (Nicholas J. Phillips's Plugin) --><script type="application/javascript" src="http://tenk77.github.io/js/jquery-col_format/index.min.js"></script><!-- jQuery Sticky | http://web.archive.org/web/20130130162634/http://www.profilepicture.co.uk/demos/stickybox/js/stickysidebar.jquery.js --><script type="application/javascript" src="http://tenk77.github.io/js/sticky.min.js"></script><!--\Modules--><!--/Styles(css)--><!-- css/index.min.css --><style rel="stylesheet" defer type="text/css" href="http://tenk77.github.io/css/index.min.css"></style><!-- AnimateCSS | http://daneden.github.io/animate.css --><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.1/animate.min.css"><!--\Styles(css)--><!--/Fonts--><!-- Font Awesome | fortawesome.github.io/Font-Awesome/ --><link rel="stylesheet" defer type="text/css" href="https://tenk77.github.io/node_modules/font-awesome/css/font-awesome.min.css"><!--\Fonts--><!-- \Default--><!-- /favicon.ico--><link rel="SHORTCUT ICON" href="http://tenk77.github.io/logos/favicon.ico"><!-- \favicon.ico--><!-- /Other--><!-- \Other--><!--=\Scripts|Modules|Styles|Fonts--><!--/Metadata--><meta charset="UTF-8"><meta name="description" content="Home Page"><meta name="keywords" content=""><meta name="author" content="Nicholas J. Phillips"><!--\Metadata--><!--/Title--><title>Home Page</title><!--\Title--></head><body><!-- /Navbar --><script type="application/javascript">var normalcolor = "Grey",
+    color1 = "DarkGreen",
+    color2 = "Green",
+    color3 = "DarkGreen",
+    word = "Monstro Gaming",
+    current = "",
+    characters = word.length,
+    letter = 0,
+    apply1 = 0,
+    apply2 = -1,
+    apply3 = -2,
+    speed = 50;
+
+function colorScroll() {
+    for (current = ""; letter < characters;) current = letter == apply1 ? current + ("<font color=" + color1 + ">" + word[letter] + "</font>") : letter == apply2 ? current + ("<font color=" + color2 + ">" + word[letter] + "</font>") : letter == apply3 ? current + ("<font color=" + color3 + ">" + word[letter] + "</font>") : current + ("<font color=" + normalcolor + ">" + word[letter] + "</font>"), letter++;
+    letter = 0;
+    $("nav > .navbar-header > .navbar-brand").html(current);
+    apply1++;
+    apply2++;
+    apply3++;
+    apply3 > characters && (apply1 = 0, apply2 = -1, apply3 = -2);
+    setTimeout("colorScroll()", speed);
+}
+$(document).ready(function() {setTimeout(colorScroll,1*1000);});</script><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Monstro Gaming</a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="http://tenk77.github.io/">Home</a></li><li><a href="http://tenk77.github.io/gallery/">Gallery</a></li></ul></div></nav><!-- \Navbar --><!-- /Body-Content--><!--/Gallery--><div class="row"><div class="col-md-12"><!-- Gallery Modules--><script type="application/javascript">(function(e) {
+    e.fn.extend({
+        smoothGallery: function(t) {
+            var n = {
+                animSpeed: 180,
+                delaySpeed: 50,
+                visibleRows: 2,
+                animEasing: "easeOutQuart"
+            };
+            var t = e.extend(n, t);
+            return this.each(function() {
+                jQuery.fn.reverse = [].reverse;
+                setHeight = function() {
+                    var n = e(".sg-item").outerHeight(),
+                        r = n * t.visibleRows,
+                        i = parseInt(e(".sg-item").css("top")),
+                        s = Math.round(Math.abs(i) / n) * n;
+                    e(".sg-item").css("top", "-" + s + "px");
+                    e(".sg").css("height", r)
+                };
+                modalHeight = function() {
+                    if (e(".sg-modal").length) {
+                        var t = parseInt(e(".sg-modal img").height()),
+                            n = parseInt(e(window).height());
+                        if (n < t + 50) {
+                            e(".sg-modal img").css("height", n - 20);
+                            e("#bug").html("smaller")
+                        } else {
+                            e(".sg-modal img").css("height", "auto");
+                            e("#bug").html(t + "" + n)
+                        }
+                    }
+                };
+                e(".sg-up").addClass("sg-disabled");
+                e(".sg").show();
+                setHeight();
+                e(window).resize(function() {
+                    setHeight();
+                    modalHeight()
+                });
+                slideDown = function() {
+                    if (e(".sg-item").is(":animated")) {
+                        return false
+                    } else {
+                        var n = parseInt(e(".sg-item").last().css("top")),
+                            r = parseInt(e(".sg-item").last().outerHeight()),
+                            i = parseInt(e(".sg-item").last().outerWidth()),
+                            s = e(".sg-item").length,
+                            o = parseInt(e(".sg").width()),
+                            u = parseInt(e(".sg").height()),
+                            a = Math.floor(o / i),
+                            f = Math.ceil(s / a),
+                            l = f * r,
+                            c = u / r * r;
+                        if (n <= -(l - c)) {} else {
+                            e(".sg-up").removeClass("sg-disabled");
+                            e(".sg-item").each(function(n) {
+                                itemHeight2 = parseInt(e(".sg-item").outerHeight());
+                                e(this).delay(t.delaySpeed * n).animate({
+                                    top: "-=" + itemHeight2 + "px"
+                                }, t.animSpeed, t.animEasing)
+                            });
+                            if (n <= -(l - c) + r) {
+                                e(".sg-down").addClass("sg-disabled")
+                            }
+                        }
+                        event.preventDefault()
+                    }
+                };
+                e(document.body).on("click", ".sg-down", function(e) {
+                    slideDown()
+                });
+                e(document).keydown(function(e) {
+                    if (e.keyCode == 40) {
+                        slideDown();
+                        return false
+                    }
+                });
+                slideUp = function() {
+                    if (e(".sg-item").is(":animated")) {
+                        return false
+                    } else {
+                        if (e(".sg-item").first().css("top") == "0px") {} else {
+                            e(".sg-down").removeClass("sg-disabled");
+                            e(".sg-item").reverse().each(function(n) {
+                                itemHeight2 = parseInt(e(".sg-item").outerHeight());
+                                e(this).delay(t.delaySpeed * n).animate({
+                                    top: "+=" + itemHeight2 + "px"
+                                }, t.animSpeed, t.animEasing)
+                            });
+                            var n = parseInt(e(".sg-item").last().outerHeight());
+                            if (parseInt(e(".sg-item").first().css("top")) == 0 - n) {
+                                e(".sg-up").addClass("sg-disabled")
+                            }
+                        }
+                        event.preventDefault()
+                    }
+                };
+                e(document.body).on("click", ".sg-up", function(e) {
+                    slideUp()
+                });
+                e(document).keydown(function(e) {
+                    if (e.keyCode == 38) {
+                        slideUp();
+                        return false
+                    }
+                });
+                e(document.body).on("click", ".sg-item a", function(t) {
+                    var n = e(this).attr("title"),
+                        r = e(this).attr("href");
+                    if (e(this).attr("title")) {
+                        e("body").append('<div class="sg-modal"><div class="sg-modal-h"><div class="sg-modal-v"><div class="sg-modal-img-wrap"><img src="' + r + '"/><a href="#" id="sg-close">&times;</a></div><br><div class="sg-caption">' + n + "</div></div></div></div>")
+                    } else {
+                        e("body").append('<div class="sg-modal"><div class="sg-modal-h"><div class="sg-modal-v"><div class="sg-modal-img-wrap"><img src="' + r + '"/><a href="#" id="sg-close">&times;</a></div></div></div></div>')
+                    }
+                    e(".sg-modal").fadeIn(300, function() {
+                        modalHeight()
+                    });
+                    t.preventDefault()
+                });
+                e(document.body).on("click", "#sg-close", function(t) {
+                    e(".sg-modal").fadeOut(300, function() {
+                        e(this).remove()
+                    });
+                    t.preventDefault()
+                })
+            })
+        }
+    })
+})(jQuery);</script><style type="text/css">.sg {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+    border-radius: 6px;
+    /* Prevent flash of unstyled content */
+    display: none;
+}
+.sg-paginate {
+    text-align: center;
+}
+.sg-paginate a:link, .sg-paginate a:visited {
+    text-decoration: none;
+    display: inline-block;
+    color: #666;
+    border: 2px solid #666;
+    width: 40px;
+    height: 19px;
+    padding: 7px 0 0 0;
+    margin: 3px;
+    border-radius: 7px;
+    font-size: 10px;
+    vertical-align: top;
+}
+.sg-paginate a:hover {
+    color: #fff;
+    background: #666;
+}
+.sg-paginate a:active {
+    color: #fff;
+    border: 2px solid #222;
+    background: #222;
+}
+.sg-disabled {
+    opacity: .3;
+}
+.sg-item {
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    color: #8B8B8B;
+    line-height: 1.4em;
+    padding: 15px;
+    text-align: center;
+    width: 25%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    top: 0;
+}
+.sg-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px #ccc;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.sg-item img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.sg-modal {
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 15px 60px 15px;
+    display: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+.sg-modal-h {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.sg-modal-v {
+    display: table-cell;
+    vertical-align: middle;
+}
+.sg-modal img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px #000;
+}
+.sg-modal-img-wrap {
+    position: relative;
+    display: inline-block;
+}
+.sg-caption {
+    color: #E2E2E2;
+    background: #000;
+    bottom: 0;
+    line-height: 1.2em;
+    padding: 5px 15px;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 12px;
+}
+#sg-close {
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    width: 31px;
+    height: 24px;
+    display: inline-block;
+    padding-top: 0.3%;
+    border-radius: 17px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+#sg-close:hover {
+    color: rgb(200, 0, 0);
+    border: 2px solid rgb(200, 0, 0);
+}
+@media all and (max-width: 800px) {
+    .sg-item {
+        width: 33.3%;
+   }
+}
+@media all and (max-width: 500px) {
+    .sg-item {
+        width: 50%;
+        padding: 5px;
+   }
+}</style><!-- Gallery Initiator--><div class="sg"><div class="sg-item"><a href="../logos/logo.png" title="Our Logo"><img src="../logos/logo.png"></a><br>Logo</div></div><div class="sg-paginate"><a href="#" style="font-size:150%;;padding:0% 0 2.2%;" class="sg-up">▲</a><a href="#" style="font-size:150%;;padding:0% 0 2.2%;" class="sg-down">▼</a></div></div></div><!--\Gallery--><script type="application/javascript">$(document).ready(function() {
+    $(document).smoothGallery({
+        animSpeed: 300,
+        delaySpeed: 50,
+        visibleRows: 1,
+        animEasing: 'easeOutQuart'
+    });
+});</script><!-- \Body-Content--><!-- /Footer --><!-- \Footer --><!-- /Bootstrap-Modules --><!--  JavaScript  --><script type="application/javascript">requirejs(["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"]);</script><!--  CSS  --><link rel="stylesheet" defer type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!--   Theme   --><!--    Slate    --><link rel="stylesheet" async type="text/css" href="https://bootswatch.com/slate/bootstrap.min.css"><!-- \Bootstrap-Modules--><!--/js/index.js--><script type="application/javascript" src="http://tenk77.github.io/js/index.min.js"></script><!--\js/index.js--></body></html>
