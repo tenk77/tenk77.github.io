@@ -1,0 +1,19 @@
+{
+  "name": "tenk77.github.io",
+  "version": "1.0.0",
+  "description": "Monstro Gaming's Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tenk77/tenk77.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tenk77/tenk77.github.io/issues"
+  },
+  "homepage": "https://github.com/tenk77/tenk77.github.io"
+}

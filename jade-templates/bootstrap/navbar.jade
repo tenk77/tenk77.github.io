@@ -1,3 +1,28 @@
+script(type="application/javascript").
+    var normalcolor = "Grey",
+        color1 = "DarkGreen",
+        color2 = "Green",
+        color3 = "DarkGreen",
+        word = "Monstro Gaming",
+        current = "",
+        characters = word.length,
+        letter = 0,
+        apply1 = 0,
+        apply2 = -1,
+        apply3 = -2,
+        speed = 50;
+
+    function colorScroll() {
+        for (current = ""; letter < characters;) current = letter == apply1 ? current + ("<font color=" + color1 + ">" + word[letter] + "</font>") : letter == apply2 ? current + ("<font color=" + color2 + ">" + word[letter] + "</font>") : letter == apply3 ? current + ("<font color=" + color3 + ">" + word[letter] + "</font>") : current + ("<font color=" + normalcolor + ">" + word[letter] + "</font>"), letter++;
+        letter = 0;
+        $("nav > .navbar-header > .navbar-brand").html(current);
+        apply1++;
+        apply2++;
+        apply3++;
+        apply3 > characters && (apply1 = 0, apply2 = -1, apply3 = -2);
+        setTimeout("colorScroll()", speed);
+    }
+    $(document).ready(function() {setTimeout(colorScroll,1*1000);});
 nav(role="navigation").navbar.navbar-default.navbar-fixed-top
     .navbar-header
         button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle.collapsed
@@ -5,9 +30,10 @@ nav(role="navigation").navbar.navbar-default.navbar-fixed-top
             span.icon-bar
             span.icon-bar
             span.icon-bar
-        a(href="#").navbar-brand
+        //- a(href="#").navbar-brand
             - var style = {"height":"25px","width":"296px","margin-right":"-15px"}
             img(src="http://tenk77.github.io/logos/Name-Logo.png", style=style)
+        a(href="#").navbar-brand Monstro Gaming
     .collapse.navbar-collapse
         ul.nav.navbar-nav
             - var weblinks = [["http://tenk77.github.io/","Home"]]
