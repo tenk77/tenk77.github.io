@@ -17,24 +17,41 @@ block head
     title=title
     //\Title
 block body
+    - var imgs = [["../logos/logo.png","Our Logo"],["./images/Clan.jpg","Our Clan Image"],["./images/thomas Is Black.png","Thomas is Black"],["./images/Boom.png","Boom"]];
+    //- Simple Gallery
+    //- //- .row
+    //-     .col-md-2.widgets
+    //-         link(rel="stylesheet", type="text/css", href="http://tenk77.github.io/css/widgets-col.min.css")
+    //-         include ../widgets/contacts.jade
+    //-         script(type="application/javascript").
+    //-             setTimeout(function() {$(".widgets").stickySidebar({timer: 1,padding: 30});}, 1 * 1000);
+    //- ///Gallery
+    //- //- iframe(src="gallery.html",width="100%",frameborder=0,seamless=1,style={"height":"30em"})
     //- .row
-        .col-md-2.widgets
-            link(rel="stylesheet", type="text/css", href="http://tenk77.github.io/css/widgets-col.min.css")
-            include ../widgets/contacts.jade
-            script(type="application/javascript").
-                setTimeout(function() {$(".widgets").stickySidebar({timer: 1,padding: 30});}, 1 * 1000);
-    ///Gallery
-    //- iframe(src="gallery.html",width="100%",frameborder=0,seamless=1,style={"height":"30em"})
+    //-     .col-md-12
+    //-         include gallery.jade
+    //- //\Gallery
+    //- script(type="application/javascript").
+    //-     $(document).ready(function() {
+    //-         $(document).smoothGallery({
+    //-             animSpeed: 300,
+    //-             delaySpeed: 50,
+    //-             visibleRows: 1,
+    //-             animEasing: 'easeOutQuart'
+    //-         });
+    //-     });
+
+    //- fancyBox
+    script(type="application/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js")
+    script(type="application/javascript", src="../js/imgLiquid/index.min.js")
+    link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css")
     .row
         .col-md-12
-            include gallery.jade
-    //\Gallery
+            ul.list-inline.gallery(style={"margin-left":"initial","text-align":"center"})
+                - for(var i=0;i<imgs.length;i++)
+                    li(style={"padding-top":"5px","padding-bottom":"5px"})
+                        a.fancybox(href="#{imgs[i][0]}"): img(src="#{imgs[i][0]}", alt="#{imgs[i][1]}", height="300px",width="300px")
     script(type="application/javascript").
-        $(document).ready(function() {
-            $(document).smoothGallery({
-                animSpeed: 300,
-                delaySpeed: 50,
-                visibleRows: 1,
-                animEasing: 'easeOutQuart'
-            });
-        });
+        $(".fancybox")
+            .attr("rel", "gallery")
+            .fancybox();
