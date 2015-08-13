@@ -19,11 +19,10 @@ block head
 block body
     .row
         .col-md-10
-            .container
+            include:markdown index-body.md
+        ///Widgets
         .col-md-2.widgets
-            link(rel="stylesheet", type="text/css", href="http://tenk77.github.io/css/widgets-col.min.css")
-            include widgets/contacts.jade
-            include widgets/links.jade
+            include widgets/index.jade
             script(type="application/javascript").
                 setTimeout(function() {
                     $(".widgets").stickySidebar({
@@ -31,7 +30,4 @@ block body
                         padding: 30
                     });
                 }, 1 * 1000);
-    .row
-        .col-md-12
-            - for(var i = 0; i < 100; i++)
-                br
+        //\Widgets

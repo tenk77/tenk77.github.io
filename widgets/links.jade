@@ -8,8 +8,8 @@ script(type="application/javascript").
       return el.fadeIn();
     }
   };
-h3: a(onclick="links_toggle();") Links
-div.links
+h3(style={"display":"table-cell"}): a(onclick="links_toggle();") Links
+.links
   - var links = [["http://furyn.github.io/", "Wiki"], ["http://dirtybomb.nexon.net/", "Dirty Bomb News"]];
   - for(var i = 0; i < links.length; i++)
     h4: a(target="blank", href="#{links[i][0]}") #{links[i][1]}

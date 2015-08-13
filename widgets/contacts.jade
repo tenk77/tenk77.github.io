@@ -22,8 +22,8 @@ script(type="application/javascript").
       return el.fadeIn();
     }
   };
-h3: a(onclick="contacts_div_toggle();") Contacts
-div.contacts
+h3(style={"display":"table-cell"}): a(onclick="contacts_div_toggle();") Contacts
+.contacts
   h4: a(onclick="contact_toggle(1);", href="#") Tenk
   #contact-1
     h5 Contact Me!
@@ -31,6 +31,7 @@ div.contacts
       a(target="blank", href="http://steamcommunity.com/profiles/76561198059890894/") Steam
       span(style={color:grey})  | 
       a(target="blank", href="mailto:tenkmontro77@gmail.com") Email
+
   h4: a(onclick="contact_toggle(2);", href="#") Zombie
   #contact-2
     h5 Contact Me!
