@@ -1,4 +1,4 @@
-extend ../jade-templates/main.jade
+extend ../jade-templates/main-dir2.jade
 block head
     - var title         =   "Home Page";
     - var description   =   "Home Page";
@@ -17,7 +17,7 @@ block head
     title=title
     //\Title
 block body
-    - var imgs = [["../logos/logo.png","Our Logo"], ["./images/Clan.jpg","Our Clan Image"],["./images/thomas Is Black.png","Thomas is Black"],["./images/Boom.png","Boom"],["./images/1920x1080.png","Un-Titled"]];
+    - var imgs = [["../logos/logo.png","Our Logo","Our Logo"], ["./images/Clan.jpg","Our Clan Image","Our Clan Image/Logo"], ["./images/thomas Is Black.png","Thomas is Black","Thomas is Black?!"], ["./images/Boom.png","Boom","Boom!"], ["./images/1920x1080.png","Un-Titled","Untitled"]];
     //- Simple Gallery
     //- //- .row
     //-     .col-md-2.widgets
@@ -43,15 +43,12 @@ block body
 
     //- fancyBox
     script(type="application/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js")
-    script(type="application/javascript", src="../js/imgLiquid/index.min.js")
     link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css")
     .row
         .col-md-12
             ul.list-inline.gallery(style={"margin-left":"initial","text-align":"center"})
                 - for(var i=0;i<imgs.length;i++)
                     li(style={"padding-top":"5px","padding-bottom":"5px"})
-                        a.fancybox(href="#{imgs[i][0]}"): img(src="#{imgs[i][0]}", alt="#{imgs[i][1]}", height="300px",width="300px")
+                        a.fancybox(href="#{imgs[i][0]}", alt="#{imgs[i][2]}",title="#{imgs[i][1]}"): img(src="#{imgs[i][0]}", height="300px",width="300px")
     script(type="application/javascript").
-        $(".fancybox")
-            .attr("rel", "gallery")
-            .fancybox();
+        $(".fancybox").attr("rel","gallery").fancybox();

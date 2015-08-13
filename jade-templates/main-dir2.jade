@@ -9,7 +9,7 @@ html
       //- Directory
       //=/Scripts|Modules|Styles|Fonts
       // /Default
-      include ./modules.jade
+      include ./modules-dir2.jade
       // \Default
       
       // /favicon.ico
@@ -26,7 +26,7 @@ html
       block head
   body
       // /Navbar 
-      include bootstrap/navbar.jade
+      include ./bootstrap/navbar.jade
       // \Navbar 
 
       // /Body-Content
@@ -34,15 +34,15 @@ html
       // \Body-Content
 
       // /Footer 
-      include bootstrap/footer.jade
+      include ./bootstrap/footer.jade
       // \Footer 
 
       // /Bootstrap-Modules 
-      include bootstrap/modules.jade
+      include ./bootstrap/modules.jade
       // \Bootstrap-Modules
 
       ///js/index.js
       //- script(type="application/javascript", src="http://tenk77.github.io/js/index.min.js")
       script(type="application/javascript")
-            include ./js/index.min.js
+            include ../js/index.min.js
       //\js/index.js
