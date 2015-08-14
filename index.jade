@@ -19,7 +19,18 @@ block head
 block body
     .row
         .col-md-10
-            include:markdown index-body.md
+            h1#animated1(style={"display":"none"}) Welcome To Monstro Gaming
+            // Calender 
+            // --------END-------- 
+
+            script(type="application/javascript").
+                $(document).ready(function() {
+                    setTimeout(function() {
+                        $("#animated1").animateCSS("zoomInDown", function() {
+                            $(this).css("transition", "1s all ease-in-out").css("color", "darkgreen");
+                        });
+                    }, (1) * 1000);
+                });
         ///Widgets
         .col-md-2.widgets
             include widgets/index.jade
@@ -29,5 +40,5 @@ block body
                         timer: 1,
                         padding: 30
                     });
-                }, 1 * 1000);
+                }, (1) * 1000);
         //\Widgets
