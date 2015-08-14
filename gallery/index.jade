@@ -1,7 +1,7 @@
 extend ../jade-templates/main.jade
 block head
-    - var title         =   "Home Page";
-    - var description   =   "Home Page";
+    - var title         =   "Gallery";
+    - var description   =   "Gallery";
     - var keywords      =   "Gallery,Images";
     - var author        =   "Nicholas J. Phillips";
     ///Metadata
@@ -17,12 +17,36 @@ block head
     title=title
     //\Title
 block body
-    - var imgs = [["../logos/logo.png","Our Logo","Our Logo"], ["./images/Clan.jpg","Our Clan Image","Our Clan Image/Logo"], ["./images/thomas Is Black.png","Thomas is Black","Thomas is Black?!"], ["./images/Boom.png","Boom","Boom!"], ["./images/1920x1080.png","Un-Titled","Untitled"]];
+    //-/Images
+    - var imgs = [];
+    - imgs[0] = ["Clan Image", "Our Clan Image/Logo", "http://tenk77.github.io/gallery/images/Clan.jpg"];
+    - imgs[1] = ["Untitled", "Not Known", "http://tenk77.github.io/gallery/images/1920x1080.png"];
+    - imgs[2] = ["2015", "Not Known", "http://tenk77.github.io/gallery/images/2015.png"];
+    - imgs[3] = ["Untitled", "Not Known", "http://tenk77.github.io/gallery/images/Part1hd.png"];
+    - imgs[4] = ["Thomas Is Black", "Not Known", "http://tenk77.github.io/gallery/images/thomas Is Black.png"];
+    //-\Images
+
     .row
-        .col-md-12
-            ul.list-inline.gallery(style={"margin-left":"initial","text-align":"center"})
-                - for(var i=0;i<imgs.length;i++)
-                    li(style={"padding-top":"5px","padding-bottom":"5px"})
-                        a.fancybox(href="#{imgs[i][0]}", alt="#{imgs[i][2]}",title="#{imgs[i][1]}"): img(src="#{imgs[i][0]}", height="300px",width="300px")
-    script(type="application/javascript").
-        $(".fancybox").attr("rel","gallery").fancybox();
+        //- .col-md-12
+        div
+            ///TN3 Modules
+            // TN3 Stylesheet 
+            style(type="text/css", rel="stylesheet")
+                include ../modules/tn3/skins/tn3/tn3.css
+            //- 
+            // TN3 Javascript 
+            script(type="text/javascript")
+                include ../modules/tn3/js/jquery.tn3lite.min.js
+            //\TN3 Modules
+            #gallery.gallery
+                .tn3.album
+                    ol
+                        - for (var i=0;i<imgs.length;i++)
+                            li
+                                h4 #{imgs[i][0]}
+                                .tn3.description #{imgs[i][1]}
+                                a(href="#{imgs[i][2]}")
+                                    img(src="#{imgs[i][2]}")
+
+            script(type="application/javascript")
+                include:uglify-js index.js
