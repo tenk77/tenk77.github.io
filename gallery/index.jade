@@ -27,8 +27,7 @@ block body
     //-\Images
 
     .row
-        //- .col-md-12
-        div
+        div.col-md-12
             ///TN3 Modules
             // TN3 Stylesheet 
             style(type="text/css", rel="stylesheet")
@@ -50,3 +49,5 @@ block body
 
             script(type="application/javascript")
                 include:uglify-js index.js
+            .col-md-12
+                include ..\widgets\comments.jade

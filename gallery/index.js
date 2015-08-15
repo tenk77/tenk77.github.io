@@ -35,8 +35,8 @@ $(document).ready(function() {
     var tn1 = $('#gallery').tn3({
         skinDir: "../modules/tn3/skins",
         responsive: "width",
-        // width: "100%",
-        // height: "100%",
+        width: "100%",
+        height: "100%",
         // height: $(document).height() - $(".nav").height() * (50 / 100),
         mouseWheel: true,
         image: {
