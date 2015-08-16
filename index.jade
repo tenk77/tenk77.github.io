@@ -21,7 +21,8 @@ block body
         .col-md-10
             h1.text-center#animated1(style={"display":"none"}) Welcome To Monstro Gaming
             - var calender_url = "http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Ftenk77.github.io%2FCalender.ics&theme=GR&ccolor=%23ffffc0&dims=1&gtype=cv_monthgrid&gcloseable=0&gnavigable=1&gperiod=month&itype=cv_simpleevent";
-            h3: a(class="fancybox fancybox.iframe",href=calender_url) Calender
+            //- h3: a(class="fancybox fancybox.iframe",href=calender_url) Calender
+            iframe(src="#{calender_url}", style={"width":"800px","height":"598px","display":"block","margin":"0 auto","float":"right","clear":"both"})
             script(type="application/javascript").
                 $(document).ready(function() {
                     setTimeout(function() {
@@ -32,8 +33,14 @@ block body
                 });
 
                 $(".fancybox").fancybox();
+
+            // /Members List 
+            h1 Members
+            #member-list
+                include widgets/members.jade
+            // \Members List 
         ///Widgets
-        .col-md-2.widgets
+        .col-md-2.widgets.stickybar
             include widgets/index.jade
             script(type="application/javascript").
                 setTimeout(function() {
